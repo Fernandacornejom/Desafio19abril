@@ -24,7 +24,7 @@ SELECT * FROM detalle_compra WHERE compra_id = 1;
 -- 21 |          17 |         1 |        7
 -- 22 |          18 |         1 |        9
 -- 61 |           9 |         1 |        5
-
+--(3 rows)
 
 --3. El cliente usuario02 ha realizado la siguiente compra:
 --● producto: producto1, producto 2, producto 8.
