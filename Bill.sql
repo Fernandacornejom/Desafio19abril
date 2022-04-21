@@ -1,18 +1,19 @@
 --Para cumplir los siguientes requerimientos, debes recordar tener desactivado el autocommit en tu base de datos.
 --1. Cargar el respaldo de la base de datos unidad2.sql. 
---psql -U fernandacornejo bill < copiaunidad2.sql
+--psql -U fernandacornejo bill2 < copiaunidad2.sql
 
 --2. El cliente usuario01 ha realizado la siguiente compra:
 --● producto: producto9.
 --● cantidad: 5.
 --● fecha: fecha del sistema.
 BEGIN; 
-INSERT INTO compra (cliente_id) VALUES (1);
+INSERT INTO compra (cliente_id, fecha) VALUES (1, now());
 INSERT INTO detalle_compra (producto_id, compra_id, cantidad) VALUES (9, 1, 5); 
 UPDATE producto SET stock = stock - 5 WHERE id = 9; 
 COMMIT;
 --Mediante el uso de transacciones, realiza las consultas correspondientes para este requerimiento y luego consulta la tabla producto para validar si fue efectivamente descontado en el stock.
 SELECT * FROM producto WHERE id = 9;
+--EL STOCK INICIAL ERA 8 Y AHORA ES 3.
 -- id | descripcion | stock | precio 
 ----+-------------+-------+--------
 --  9 | producto9   |     3 |   4219
@@ -144,3 +145,6 @@ SELECT * FROM cliente;
 
 --f. Habilitar de nuevo el AUTOCOMMIT
 --\set AUTOCOMMIT on
+
+--LUEGO DE REALIZADAS LAS TRANSACCIONES SE RESPALDA LA BASE DE DATOS EN respaldobill.sql
+--pg_dump -U fernandacornejo bill2 > respaldobill.sql
